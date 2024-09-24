@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if messages %}
+                <div class="alert alert-success" role="alert">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
     <div class="container">
         <h1>Bienvenido a tu Blog</h1>
         <p>Desde aquí puedes realizar las siguientes acciones:</p>
-        <div class="options">
+        <div class="opciones" style="display: flex;">
             <a href="{% url 'crear_publicacion' %}" class="btn btn-primary">Crear Publicación</a>
-            <a href="{% url 'listar_post' %}" class="btn btn-secondary">Ver Publicaciones</a>
-            <a href="{% url 'logout' %}" class="btn btn-danger">Cerrar Sesión</a>
+            <a href="{% url 'listar_post' %}" class="btn btn-success">Ver Publicaciones</a>
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="btn btn-danger" type="submit"">Cerrar Sesión</button>
+            </form>
         </div>
     </div>
 {% endblock %}

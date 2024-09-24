@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path
 from post import views
-from post.views import InicioView, registro_usuario, crear_publicacion
+from post.views import InicioView, logout_view, registro_usuario, crear_publicacion, detalle_post, eliminar_post, editar_post
 from post.views import listar_post
 
 urlpatterns = [
@@ -29,6 +29,9 @@ urlpatterns = [
     path('registro/', registro_usuario, name='registro'),
     path('crear/', views.crear_publicacion, name='crear_publicacion'),
     path('listar/', views.listar_post, name='listar_post'),
-
+    path('accounts/logout/', logout_view, name='logout'),
+    path('publicacion/<int:id>/', detalle_post, name='detalle_post'),
+    path('publicacion/eliminar/<int:id>/', eliminar_post, name='eliminar_post'),
+    path('publicacion/editar/<int:id>/', editar_post, name='editar_post'), 
 ]
 
